@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  app: #name of the service
+    build: # means we want to build the dockerfile inside our current/root directory
+      context: .
+      args:
+        - DEV=true
+    ports:
+      - "8000:8000"
+    volumes: # mapping diretories from our system into docker container, reason we do this is to reflect the updates that we do in your local syystem to be reflected on to the running container in the real time
+      - ./app:/app
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"
