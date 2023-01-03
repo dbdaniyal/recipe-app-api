@@ -10,6 +10,7 @@ services:
       - "8000:8000"
     volumes: # mapping diretories from our system into docker container, reason we do this is to reflect the updates that we do in your local syystem to be reflected on to the running container in the real time
       - ./app:/app
+      - dev-static-data:/vol/web
     command: >
       sh -c "python manage.py wait_for_db &&
              python manage.py migrate &&
@@ -33,3 +34,4 @@ services:
 
 volumes:
   dev-db-data:
+  dev-static-data:
